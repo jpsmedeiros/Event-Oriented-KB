@@ -4,7 +4,9 @@
 entity("Barack Hussein Obama II").
 entity("California").
 entity("Toyota Motor Corporation").
-entity("Michelle Obama")
+entity("Michelle Obama").
+entity("Malia Obama").
+entity("United States of America").
 
 % Names
 % name(synonymous_name, real_name).
@@ -48,8 +50,24 @@ relationship("husband", "Barack Hussein Obama II", "Michelle Obama", TIME) :-
         between(1992, CURRENT_YEAR, TIME)
     ).
 
+relationship("father", "Barack Hussein Obama II", "Malia Obama", TIME) :-
+    bigger_equal(TIME, 1998).
+
+relationship("president", "Barack Hussein Obama II", "United States of America", TIME) :-
+    between(2009, 2017, TIME).
+
+event("end of world war II", 1945).
+
+event("world war II", TIME) :-
+    between(1939, 1945, TIME).
+
+
+
+% Get the current year
 year(Year) :-
         get_time(Stamp),
         stamp_date_time(Stamp, DateTime, local),
         date_time_value(year, DateTime, Year).
-    
+
+bigger_equal(X, Y):- number(X), number(Y), X >= Y.
+equal(X, Y):- X = Y.
