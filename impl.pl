@@ -107,4 +107,100 @@ event_where(X, Y) :-
        	place(Z, Y),
     	event_where(X, Z)
     ).
+
+% Tratando datas
+date(X, Y) :-
+    split_string(X, "/","", Y).
+
+year([_ | [_ | [X |_ ]]], Y) :-
+     atom_number(X, Y).
+
+year(X, Y) :-
+    date(X, Z),
+    year(Z, Y),
+    !.
+
+month([_ | [X | _]], Y) :-
+	atom_number(X, Y).
+
+month(X, Y) :-
+    date(X, Z),
+    month(Z, Y),
+    !.
+
+day([X |_], Y) :- 
+    atom_number(X, Y).
+
+day(X, Y) :-
+    date(X, Z),
+    day(Z, Y),
+    !.
+
+after(X, Y) :-
+    (   
+    	year(X, A),
+   		year(Y, B),
+        A > B
+    ),
+    !;
+    (   
+    	month(X, A),
+   		month(Y, B),
+        A > B
+    ),
+    !;
+    (   
+    	day(X, A),
+   		day(Y, B),
+        A > B
+    ),
+    !.
+
+before(X, Y) :-
+    (   
+    	year(X, A),
+   		year(Y, B),
+        A < B
+    ),
+    !;
+    (   
+    	month(X, A),
+   		month(Y, B),
+        A < B
+    ),
+    !;
+    (   
+    	day(X, A),
+   		day(Y, B),
+        A < B
+    ),
+    !.
+
+same_time(X, Y) :-
+    not(before(X, Y)),
+    not(after(X, Y)).
+
+
+comp_dates(X, A, B) :-
+    (
+        year(A, Ya),
+       	year(B, Yb),
+    	Ya > Yb,
+        compare(X, Ya, Yb),
+        !
+    );
+    (
+    	month(A, Ma),
+       	month(B, Mb),
+    	Ma > Mb,
+        compare(X, Ma, Mb),
+        !
+    );
+    (
+    	day(A, Da),
+       	day(B, Db),
+    	Da > Db,
+    	compare(X, Da, Db),
+        !
+    ). 
                  
