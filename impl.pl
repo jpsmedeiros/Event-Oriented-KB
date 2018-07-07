@@ -24,13 +24,16 @@ tag("Barack Hussein Obama II", "what is", ["person"]).
 tag("Barack Hussein Obama II", "gender", ["man"]).
 tag("Barack Hussein Obama II", "skin color", ["black"]).
 tag("Barack Hussein Obama II", "professions", ["Lawyer", "Author", "Political", "Professor of Law"]).
+tag("Barack Hussein Obama II", "birth", [1961]).
 
 tag("California", "what is", ["state"]).
 tag("California", "area codes", [209, 213, 310, 323, 408, 415, 424, 442, 
     510, 530, 559, 562, 619, 626, 650, 657, 661, 707, 714, 747, 760, 805,
     818, 831, 858, 909, 916, 925, 949, 951]).
+tag("California", "Admission to Union", [1850]).
 
 tag("Toyota Motor Corporation", "what is", ["multinational automotive manufacturer"]).
 tag("Toyota Motor Corporation", "where from", ["Japan"]).
-% "..." represents that not all the properties have been listed, but could be
-tag("Toyota Motor Corporation", "cars", ["Corolla", "Prius", "Hilux", "..."])
+% "..." represents that not all the properties for that tipe have been listed, but could be
+tag("Toyota Motor Corporation", "cars", ["Corolla", "Prius", "Hilux", "..."]).
+tag("Toyota Motor Corporation", "foundation", [1937]).
