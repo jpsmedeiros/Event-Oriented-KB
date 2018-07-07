@@ -204,3 +204,6 @@ comp_dates(X, A, B) :-
         !
     ). 
                  
+		 
+inside(X, A) :-
+    findall(Y, place(Y, X), A).
