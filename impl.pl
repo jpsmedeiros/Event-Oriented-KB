@@ -2,11 +2,11 @@
 % entity(real_name).
 
 entity("Barack Hussein Obama II").
+entity("Hollywood").
 entity("California").
+entity("United States of America").
 entity("Toyota Motor Corporation").
 entity("Michelle Obama").
-entity("Malia Obama").
-entity("United States of America").
 
 % Names
 % name(synonymous_name, real_name).
@@ -71,3 +71,31 @@ year(Year) :-
 
 bigger_equal(X, Y):- number(X), number(Y), X >= Y.
 equal(X, Y):- X = Y.
+
+% Places
+% place(real_name, belongs_to)
+place("California", "United States of America").
+place("Hollywood", "California").
+
+% Where
+% where(where, what)
+where("California", "Tornado").
+where("Hollywood", "Golden Globe").
+
+% Event in specific location
+% event_where(event_name, place)
+event_where(X, Y) :-
+    (   
+    	where(Y, X),
+    	!
+    );
+    (   
+    	place(Z, Y),
+    	where(Z, X),
+    	!
+    );
+    (   
+       	place(Z, Y),
+    	event_where(X, Z)
+    ).
+                 
