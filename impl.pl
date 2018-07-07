@@ -4,6 +4,7 @@
 entity("Barack Hussein Obama II").
 entity("California").
 entity("Toyota Motor Corporation").
+entity("Michelle Obama")
 
 % Names
 % name(synonymous_name, real_name).
@@ -18,7 +19,7 @@ name("Toyota", "Toyota Motor Corporation").
 name("Toyota Motor", "Toyota Motor Corporation").
 
 % Tags
-% tag(real_name, property_tipe, list_of_properties[])
+% tag(real_name, property_tipe, list_of_properties[]).
 
 tag("Barack Hussein Obama II", "what is", ["person"]).
 tag("Barack Hussein Obama II", "gender", ["man"]).
@@ -37,3 +38,18 @@ tag("Toyota Motor Corporation", "where from", ["Japan"]).
 % "..." represents that not all the properties for that tipe have been listed, but could be
 tag("Toyota Motor Corporation", "cars", ["Corolla", "Prius", "Hilux", "..."]).
 tag("Toyota Motor Corporation", "foundation", [1937]).
+
+% relationship
+% relationship(relation, entity_1, entity_2).
+
+relationship("husband", "Barack Hussein Obama II", "Michelle Obama", TIME) :-
+    (
+        year(CURRENT_YEAR),
+        between(1992, CURRENT_YEAR, TIME)
+    ).
+
+year(Year) :-
+        get_time(Stamp),
+        stamp_date_time(Stamp, DateTime, local),
+        date_time_value(year, DateTime, Year).
+    
